@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="Calculator" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="equal" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2">
+        <valuetable name="On_Off" definesMinMax="true">
+          <valuetableentry value="0" lowerBound="0" upperBound="0" description="Off" displayString="Off" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="On" displayString="On" />
+          <valuetableentry value="2" lowerBound="2" upperBound="2" description="Invalid" displayString="Invalid" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="op1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="op2" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="operator" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="55" minValue="0" minValuePhys="0" maxValue="55" maxValuePhys="55">
+        <valuetable name="operator_options" definesMinMax="true">
+          <valuetableentry value="0" lowerBound="0" upperBound="0" description="addition" displayString="addition" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="subtraction" displayString="subtraction" />
+          <valuetableentry value="2" lowerBound="2" upperBound="2" description="multiplication" displayString="multiplication" />
+          <valuetableentry value="3" lowerBound="3" upperBound="3" description="division" displayString="division" />
+          <valuetableentry value="55" lowerBound="55" upperBound="55" description="invalid" displayString="invalid" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="res" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+    </namespace>
+  </namespace>
+</systemvariables>

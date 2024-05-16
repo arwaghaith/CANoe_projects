@@ -1,0 +1,445 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  // Constants for array size and operator types
+  const OUTPUT_ARR_SIZE = 500;
+  const ADDITION_OPERATOR = 0;
+  const SUBTRACTION_OPERATOR = 1;
+  const MULTIPLICATION_OPERATOR = 2;
+  const DIVISION_OPERATOR = 3;
+  const MODULUS_OPERATOR = 4;
+
+  // Arrays to store input and result
+  char outputArr[OUTPUT_ARR_SIZE] = "";
+  char operatorArray[2];  // Array to store the operator (+, -, *, /, etc.)
+  char beforeOperator[OUTPUT_ARR_SIZE];
+  char afterOperator[OUTPUT_ARR_SIZE];
+  char res[OUTPUT_ARR_SIZE];
+  char r[OUTPUT_ARR_SIZE];
+
+  // Variables for string manipulation
+  int s=0;
+  int e=0;
+  int l=0;
+  char temp;
+
+  // Variables for calculations
+  int index = 0;
+  int operatorIndex = 0;
+  int afterIndex = 0;
+  int i=0;
+  int number=0;
+}
+
+// Event handler for Button_0
+
+
+
+
+// Event handler for Button_0
+on sysvar Calculator::Display::Button_0
+{
+  // Check if Button_0 is pressed
+  if(@Calculator::Display::Button_0 == 1)
+  {
+    // Get the current output string
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+  
+    // Append "0" to the output string
+    strncat(outputArr, "0", 200);
+    
+    // Debug message indicating Button_0 pressed
+    write("Button 0 pressed");
+  
+    // Set the updated output string
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_1
+on sysvar Calculator::Display::Button_1
+{
+  if(@Calculator::Display::Button_1 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    strncat(outputArr, "1", 200);
+    write("Button 1 pressed");
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_2
+on sysvar Calculator::Display::Button_2
+{
+  if(@Calculator::Display::Button_2 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "2", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_3
+on sysvar Calculator::Display::Button_3
+{
+  if(@Calculator::Display::Button_3 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "3", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_4
+on sysvar Calculator::Display::Button_4
+{
+  if(@Calculator::Display::Button_4 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "4", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_5
+on sysvar Calculator::Display::Button_5
+{
+  if(@Calculator::Display::Button_5 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "5", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_6
+on sysvar Calculator::Display::Button_6
+{
+  if(@Calculator::Display::Button_6 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "6", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_7
+on sysvar Calculator::Display::Button_7
+{
+  if(@Calculator::Display::Button_7 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "7", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_8
+on sysvar Calculator::Display::Button_8
+{
+  if(@Calculator::Display::Button_8 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "8", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_9
+on sysvar Calculator::Display::Button_9
+{
+  if(@Calculator::Display::Button_9 == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "9", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_add
+on sysvar Calculator::Display::Button_add
+{
+  // Check if Button_add is pressed
+  if(@Calculator::Display::Button_add == 1)
+  {
+    // Get the current output string
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    
+    // Debug message indicating the current string value
+    write("String value is %s ", outputArr);
+    
+    // Append "+" to the output string
+    strncat(outputArr, "+", OUTPUT_ARR_SIZE);
+    
+    // Debug message indicating the updated string value
+    write("String value is %s ", outputArr);
+    
+    // Set the updated output string
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_sub
+on sysvar Calculator::Display::Button_sub
+{
+  if(@Calculator::Display::Button_sub == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "-", OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_mul
+on sysvar Calculator::Display::Button_mul
+{
+  if(@Calculator::Display::Button_mul == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "*", OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_div
+on sysvar Calculator::Display::Button_div
+{
+  if(@Calculator::Display::Button_div == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "/", OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_mod
+on sysvar Calculator::Display::Button_mod
+{
+  if(@Calculator::Display::Button_mod == 1)
+  {
+    sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+    write("String value is %s ", outputArr);
+    strncat(outputArr, "%", OUTPUT_ARR_SIZE);
+    sysSetVariableString(sysvar::Calculator::Display::Output, outputArr);
+  }
+}
+
+// Event handler for Button_clear
+on sysvar Calculator::Display::Button_clear
+{
+  // Check if Button_clear is pressed
+  if(@Calculator::Display::Button_clear == 1)
+  {
+    // Clear the output string
+    sysSetVariableString(sysvar::Calculator::Display::Output, "");
+  }
+}
+
+// Event handler for Button_equal
+on sysvar Calculator::Display::Button_equal
+{
+  @Calculator::op1=0;
+
+  i=0;
+  index=0;
+  operatorIndex = 0;
+  afterIndex = 0;
+  @Calculator::op2=0;
+ 
+
+    if (@Calculator::Display::Button_equal == 1)
+    {
+
+        sysGetVariableString(sysvar::Calculator::Display::Output, outputArr, OUTPUT_ARR_SIZE);
+
+        if(outputArr[index]=='-')
+        {beforeOperator[index] = outputArr[index];
+          index++;
+        }
+          
+          
+        while (outputArr[index] != '\0' && (outputArr[index] != '+' && outputArr[index] != '-' && outputArr[index] != '*' && outputArr[index] != '/' && outputArr[index] != '%'))
+        {
+            beforeOperator[index] = outputArr[index];
+            index++;
+        }
+
+        beforeOperator[index] = '\0';  // Null-terminate the string
+
+        // Skip the operator
+        if (outputArr[index] != '\0' && (outputArr[index] == '+' || outputArr[index] == '-' || outputArr[index] == '*' || outputArr[index] == '/' || outputArr[index] == '%'))
+        {
+            operatorArray[operatorIndex] = outputArr[index];
+            index++;
+            operatorIndex++;
+        }
+
+        operatorArray[operatorIndex] = '\0';  // Null-terminate the operator string
+        
+
+        // Copy the remaining part after the operator
+         if(outputArr[index]=='-')
+        {afterOperator[afterIndex] = outputArr[index];
+          index++;
+                      afterIndex++;
+
+        }
+        while (outputArr[index] != '\0')
+        {
+            afterOperator[afterIndex] = outputArr[index];
+            index++;
+            afterIndex++;
+        }
+         
+
+        afterOperator[afterIndex] = '\0';  // Null-terminate the string
+
+        // Now you have the parts before and after the operator in beforeOperator and afterOperator arrays.
+        // You can use these arrays as needed in your CAPL script.
+    }
+
+ for ( i = 0; beforeOperator[i] != '\0'; i++)
+        {
+          if(beforeOperator[i]=='-')
+          {
+            i++;
+          }
+             @Calculator::op1 =  @Calculator::op1 * 10 + (beforeOperator[i] - '0');
+        }
+        if(beforeOperator[0]=='-')
+          {
+            
+            @Calculator::op1=@Calculator::op1*-1;
+          }
+
+        // Convert the string to integer for operand2
+        for (i = 0; afterOperator[i] != '\0'; i++)
+        {
+          if(afterOperator[i]=='-')
+          {
+
+            i++;
+          }
+             @Calculator::op2 =  @Calculator::op2 * 10 + (afterOperator[i] - '0');
+        }
+        if(afterOperator[0]=='-')
+          {
+
+ @Calculator::op2 = @Calculator::op2 *-1;
+            }
+        // Perform the operation based on the operator
+        switch (operatorArray[0])
+        {
+            case '+':
+                @Calculator::operator=ADDITION_OPERATOR;
+                    @Calculator::res = @Calculator::op1 + @Calculator::op2;
+
+              
+                break;
+            case '-':
+                @Calculator::operator=SUBTRACTION_OPERATOR;
+                    @Calculator::res = @Calculator::op1 - @Calculator::op2;
+
+                break;
+            case '*':
+                @Calculator::operator=MULTIPLICATION_OPERATOR; 
+                    @Calculator::res = @Calculator::op1 * @Calculator::op2;
+
+
+              break;
+            case '/':
+                // Check for division by zero
+                if (   @Calculator::op2== 0)
+                {
+                    write("Cannot divide by zero");
+                    sysSetVariableString(sysvar::Calculator::Display::Output, "Error");
+                    return;
+                }
+               @Calculator::operator=DIVISION_OPERATOR;
+                      @Calculator::res = @Calculator::op1 / @Calculator::op2;
+
+                break;
+                
+              case '%':
+                 @Calculator::operator=MODULUS_OPERATOR;
+                      @Calculator::res = @Calculator::op1 % @Calculator::op2;
+
+                break;
+            default:
+                write("Invalid operator");
+                sysSetVariableString(sysvar::Calculator::Display::Output, "Error");
+                return;
+        }
+        
+        // Display the result
+      
+index=0;
+        number= @Calculator::res;
+      if(@Calculator::res==0)
+      {
+        r[0]='0';
+        r[1]='\0';
+      }
+       
+        else
+        {
+           if(@Calculator::res<0)
+      {
+        r[0]='-';
+        index++;
+        @Calculator::res=@Calculator::res*-1;
+      }
+          
+  // Copying the result to the myString variable (optional)
+   while (@Calculator::res > 0)
+    {
+      r[index++] = '0' + (@Calculator::res % 10);
+      @Calculator::res /= 10;
+    }
+    s=0;
+    if(r[0]=='-')
+    {
+      s=1;
+      l=l-1;
+    }
+    e=index;
+    l=index/2;
+    
+    while(l>0)
+    {
+      temp=r[s];
+      r[s]=r[e-1];
+      r[e-1]=temp;
+      e--;
+      s++;
+      l--;
+    }
+    r[s+1]='\0';
+        }
+    
+    
+
+
+ sysSetVariableString(sysvar::Calculator::Display::Output,r);
+
+        
+}

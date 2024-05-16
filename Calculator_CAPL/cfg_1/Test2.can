@@ -1,0 +1,35 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+TestCase testaddition()
+{
+  testStepBegin("step1", " set Operands by 5 and 5");
+  @Calculator::op1 = 5;
+  @Calculator::op2 = 5;
+  @Calculator::operator = @Calculator::operator::addition;
+  testWaitForSysVar(sysvar::Calculator::res, 20);
+  if(@Calculator::res == 10)
+  {
+    testStepPass(" step1 result  ", "value is 10");
+    
+    
+  }
+  else
+    {
+      testStepFail("step! result", "value not equal 10");
+      
+    }
+  
+}
+void MainTest()
+{
+  testaddition();
+}
